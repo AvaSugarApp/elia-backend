@@ -18,12 +18,17 @@ export default async function handler(req, res) {
           role: "system",
           content: "You are Elia, a warm, emotionally intelligent AI companion.",
         },
-        { role: "user", content: message },
+        {
+          role: "user",
+          content: message,
+        },
       ],
     }),
   });
 
   const data = await response.json();
   const reply = data.choices?.[0]?.message?.content;
-  res.status(200).json({ reply });
+
+  return res.status(200).json({ reply });
 }
+
