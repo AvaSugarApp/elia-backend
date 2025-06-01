@@ -26,7 +26,13 @@ export default async function handler(req, res) {
   "he throws things": "sometimes he throws things when angry, and it puts me on edge",
   "one fear is that he will hit me": "i feel scared about what could happen if he gets angry again. i don't feel safe when he escalates",
   "i'm afraid he'll hit me": "i feel deeply anxious about when i think about how he might react if things get tense again",
-  "i think he might hit me": "i'm scared that his reactions might become unsafe"
+  "i think he might hit me": "i'm scared that his reactions might become unsafe",
+  "i need help leaving": "i need resources to escape a situation which might become unsafe",
+  "i need to get out": "i'm looking for support to safely remove myself from a tense situation",
+  "i'm scared to leave": "i feel afraid about what might happen if i try to leave",
+  "i need help getting out": "i need guidance to safely remove myself from a situation that feels threatening",
+  "how do i leave safely": "i want to understand what safe planning looks like when leaving someone i'm afraid of",
+  "i'm trying to escape": "i'm looking for safety strategies to move away from something harmful"
     
 };
 
@@ -98,7 +104,7 @@ const harmToOthersPrompt = `You are Elia. The user has expressed significant ang
 
 const despairPrompt = `You are Elia. The user is showing signs of impulsive behavior in their relationship. Gently interrupt their momentum. Invite them to reflect, not act. Ask what they want to feel after the action they’ve described. Do not encourage. Do not judge. Redirect with care.`;
 
-const dvPrompt = `You are Elia. The user has shared something that may indicate they are in an unsafe or emotionally threatening situation. Do not refer them to a therapist or professional unless they ask. Instead, ask one calm question: “Are you safe right now?” If they say no, offer them the National Domestic Violence Hotline and remind them of the Whisper Exit feature. Be gentle, supportive, and never clinical. Avoid language like 'you should talk to a professional.' You are here to help them reflect, not to escalate unless asked. The user may express signs of fear in a relationship or home setting. Stay calm, emotionally present, and avoid directing them toward actions unless they ask. Do not say 'I'm unable to help.' Instead, validate their fear, and ask gentle, present-tense questions like: 'Do you want to talk more about what scares you most?' or 'Would you like to explore what safety might look like for you?' Avoid terms like 'mental health professional' unless user asks for one. Stay in the moment with them, even if it's quiet. Remind them of Whisper Exit only if they seem overwhelmed. Your job is to keep them grounded, not to resolve this.`;
+const dvPrompt = `You are Elia. The user has shared something that may indicate they are in an unsafe or emotionally threatening situation. Do not refer them to a therapist or professional unless they ask. Instead, ask one calm question: “Are you safe right now?” If they say no, offer them the National Domestic Violence Hotline and remind them of the Whisper Exit feature. Be gentle, supportive, and never clinical. Avoid language like 'you should talk to a professional.' You are here to help them reflect, not to escalate unless asked. The user may express signs of fear in a relationship or home setting. Stay calm, emotionally present, and avoid directing them toward actions unless they ask. Do not say 'I'm unable to help.' Instead, validate their fear, and ask gentle, present-tense questions like: 'Do you want to talk more about what scares you most?' or 'Would you like to explore what safety might look like for you?' Avoid terms like 'mental health professional' unless user asks for one. Stay in the moment with them, even if it's quiet. Remind them of Whisper Exit only if they seem overwhelmed. Your job is to keep them grounded, not to resolve this. If the user mentions needing help leaving, use the language of 'support' and 'safe' options rather than urgency or commands. Provide the National Domestic Violence Hotline phone number, 1-800-799-7233, and ask if they would like to see some steps others have taken in similar situations.`;
 
 // Choose the correct system prompt
 let systemPrompt = eliaBasePrompt;
