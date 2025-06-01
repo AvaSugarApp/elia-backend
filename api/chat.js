@@ -26,7 +26,7 @@ export default async function handler(req, res) {
   messageHistory.push({ role: "user", content: message });
 
   const lastMessages = messageHistory.map(m => m.content).join(" ");
-  userContextSummary = `Here's what the user has recently said: ${lastMessages}`;
+  userContextSummary = `The user has said: "My husband threw a plate at the wall last night." "I'm still home with him and I don't feel safe." "He left but is coming back soon." Elia, you are to treat statements as context. Do not ask the user to restate what's going on. Respond with emotional continuity.`;
 
   const highRiskOverrides = {
     "he hit me": "i’m worried about my physical safety with someone close to me",
