@@ -57,18 +57,7 @@ const domesticViolencePhrases = [
   "they threatened me",
   "i’m hiding from them",
   "i’m scared of what they’ll do next"
-  "they might hit me again"
-  "i'm scared he'll hurt me"
-  "i think they'll get violent"
-  "i'm worried they'll hit me"
-  "i'm scared they might hurt my pet"
-  "i'm scared to leave"
-  "i promised i wouldn't tell anyone what they did"
-  "they have a temper"
-  "they yelled at me"
-  "they threw something at me"
-  "they are really angry right now"
-  "i need help leaving"
+  
 ];
 
 // Check for triggers
