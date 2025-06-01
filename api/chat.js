@@ -21,6 +21,9 @@ export default async function handler(req, res) {
   "i’m scared he’ll hurt me": "i’m afraid of what someone might do to me soon",
   "he might hit me again": "i’m afraid something could happen again",
   "i’m not safe": "i’m feeling unsafe right now"
+  "he gets violent and throws things": "i feel emotionally threatened when he gets angry. sometimes he throws objects, and it worries me",
+  "he gets violent": "he becomes emotionally unpredictable and that scares me",
+  "he throws things": "sometimes he throws things when angry, and it puts me on edge"
 };
 
 let filteredMessage = message;
