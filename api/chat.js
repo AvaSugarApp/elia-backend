@@ -143,8 +143,7 @@ if (selfHarmTrigger) {
           {
             role: 'user',
             content: filteredMessage,
-            content: userContextSummary,
-            content: systemPrompt,
+            
           },
         ],
       }),
