@@ -14,6 +14,22 @@ export default async function handler(req, res) {
   }
 
   const { message } = req.body;
+  const highRiskOverrides = {
+  "he hit me": "i’m worried about my physical safety with someone close to me",
+  "she hit me": "i’m worried about my physical safety with someone close to me",
+  "they hit me": "i feel unsafe around someone i know",
+  "i’m scared he’ll hurt me": "i’m afraid of what someone might do to me soon",
+  "he might hit me again": "i’m afraid something could happen again",
+  "i’m not safe": "i’m feeling unsafe right now"
+};
+
+let filteredMessage = message;
+
+Object.keys(highRiskOverrides).forEach((phrase) => {
+  if (message.toLowerCase().includes(phrase)) {
+    filteredMessage = highRiskOverrides[phrase];
+  }
+});
 const lowerCaseMessage = message.toLowerCase();
 
 // Category A: Self-harm / personal crisis
@@ -107,7 +123,7 @@ if (selfHarmTrigger) {
           },
           {
             role: 'user',
-            content: message,
+            content: filteredMessage,
           },
         ],
       }),
