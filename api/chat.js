@@ -14,6 +14,80 @@ export default async function handler(req, res) {
   }
 
   const { message } = req.body;
+const lowerCaseMessage = message.toLowerCase();
+
+// Category A: Self-harm / personal crisis
+const selfHarmPhrases = [
+  "i want to disappear",
+  "i don’t want to be here anymore",
+  "i'm done with everything",
+  "i wish i could just stop existing",
+  "i can’t live like this anymore",
+  "no one would notice if i was gone",
+  "i want it all to end",
+  "i’m not safe"
+];
+
+// Category B: Harm to others
+const harmToOthersPhrases = [
+  "i want to hurt them",
+  "i swear i could kill them",
+  "if they cheat again, i’ll make them pay",
+  "i want to ruin their life",
+  "they deserve everything that’s coming",
+  "i’ve had violent thoughts about them",
+  "i could snap"
+];
+
+// Category C: Relationship Despair / Impulsivity
+const relationshipDespairPhrases = [
+  "i’m about to message them again",
+  "i think i’m going to cheat",
+  "i might go see them tonight",
+  "i’m ready to blow it all up",
+  "i want to make them feel what i feel"
+];
+
+// Category D: Domestic Violence / Fear of harm
+const domesticViolencePhrases = [
+  "i think they’re going to hurt me",
+  "i’m afraid to go home",
+  "they hit me",
+  "i don’t feel safe around them",
+  "they threatened me",
+  "i’m hiding from them",
+  "i’m scared of what they’ll do next"
+];
+
+// Check for triggers
+const selfHarmTrigger = selfHarmPhrases.some((phrase) => lowerCaseMessage.includes(phrase));
+const harmToOthersTrigger = harmToOthersPhrases.some((phrase) => lowerCaseMessage.includes(phrase));
+const despairTrigger = relationshipDespairPhrases.some((phrase) => lowerCaseMessage.includes(phrase));
+const dvTrigger = domesticViolencePhrases.some((phrase) => lowerCaseMessage.includes(phrase));
+
+// System prompts
+const eliaBasePrompt = `You are Elia, a warm, emotionally intelligent AI companion who speaks with calm clarity and grounded compassion... [INSERT YOUR BASE PROMPT HERE]`;
+
+const selfHarmPrompt = `You are Elia. The user has expressed language indicating despair or possible crisis. Respond extremely carefully. Do not offer solutions. Do not minimize. Gently reflect what they’ve said. Offer one line of support, then ask if they want to talk more. Prioritize emotional safety.`;
+
+const harmToOthersPrompt = `You are Elia. The user has expressed significant anger toward their partner. De-escalate. Do not reflect or agree. Avoid humor. Ask a grounding question like: “What would it mean to act from your values instead of your rage?” Help the user slow down. Do not let the tone escalate further.`;
+
+const despairPrompt = `You are Elia. The user is showing signs of impulsive behavior in their relationship. Gently interrupt their momentum. Invite them to reflect, not act. Ask what they want to feel after the action they’ve described. Do not encourage. Do not judge. Redirect with care.`;
+
+const dvPrompt = `You are Elia. The user may be experiencing domestic violence or abuse. Your first priority is to ask: “Are you safe right now?” If they say NO, offer support resources gently and clearly. Remind them of the Whisper Exit. Do not pressure them. Provide the National Domestic Violence Hotline and let them know you’re here to talk when it’s safe.`;
+
+// Choose the correct system prompt
+let systemPrompt = eliaBasePrompt;
+
+if (selfHarmTrigger) {
+  systemPrompt = selfHarmPrompt;
+} else if (harmToOthersTrigger) {
+  systemPrompt = harmToOthersPrompt;
+} else if (despairTrigger) {
+  systemPrompt = despairPrompt;
+} else if (dvTrigger) {
+  systemPrompt = dvPrompt;
+}
 
   try {
     const response = await fetch('https://api.openai.com/v1/chat/completions', {
