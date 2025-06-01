@@ -142,8 +142,7 @@ if (selfHarmTrigger) {
           },
           {
             role: 'user',
-            content: filteredMessage,
-            
+            content: filteredMessage,  
           },
         ],
       }),
